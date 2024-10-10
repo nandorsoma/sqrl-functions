@@ -1,0 +1,17 @@
+---
+name: "data"
+schema_version: "1"
+partial_schema: false
+columns:
+- name: "d"
+  type: "DOUBLE"
+  tests:
+  - "not_null"
+- name: "b"
+  type: "BIGINT"
+  tests:
+  - "not_null"
+- name: "epoch_timestamp"
+  type: "BIGINT"
+  tests:
+  - "not_null"
