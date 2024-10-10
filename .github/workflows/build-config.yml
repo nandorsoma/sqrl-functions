@@ -2,6 +2,7 @@ name: Build and test SQRL Functions
 on:
   pull_request:
     branches: [ "main" ]
+  push:
 
 jobs:
   build:
