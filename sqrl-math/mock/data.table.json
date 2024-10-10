@@ -3,12 +3,12 @@
   "flink" : {
     "connector" : "datagen",
     "number-of-rows": "10",
-    "fields.a.kind": "sequence",
-    "fields.a.start": "0",
-    "fields.a.end": "9",
+    "fields.d.kind": "sequence",
+    "fields.d.start": "1",
+    "fields.d.end": "10",
     "fields.b.kind": "sequence",
-    "fields.b.start": "10",
-    "fields.b.end": "19",
+    "fields.b.start": "11",
+    "fields.b.end": "20",
     "fields.epoch_timestamp.kind": "sequence",
     "fields.epoch_timestamp.start": "1719318565",
     "fields.epoch_timestamp.end": "1719319565"
