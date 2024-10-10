@@ -2,7 +2,6 @@ name: Build and test SQRL Functions
 on:
   pull_request:
     branches: [ "main" ]
-  push:
 
 jobs:
   build:
@@ -18,6 +17,9 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Build SQRL Functions
+      run: mvn -T 1 -B -U -e clean verify
 
     - name: Pull datasqrl/cmd Docker image
       run: docker pull datasqrl/cmd:latest
