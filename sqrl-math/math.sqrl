@@ -1,7 +1,8 @@
-IMPORT mock.Data;
-IMPORT datasqrl.functions.math.*;
+--IMPORT mock.Data;
+--IMPORT datasqrl.functions.math.*;
+IMPORT schema.Entry;
+IMPORT target.*;
 
-/*+test */
 MyTable := SELECT d, b,
             Atan2(d, d) AS atan2,
             Cbrt(d) AS cbrt,
@@ -16,4 +17,4 @@ MyTable := SELECT d, b,
             ExponentialDistribution(d, d) AS exponential,
             NormalDistribution(d, d, d) AS normal,
             PoissonDistribution(d, b) AS poisson
-           FROM Data;
+           FROM Entry;

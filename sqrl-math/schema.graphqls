@@ -1,0 +1,38 @@
+"An RFC-3339 compliant DateTime Scalar"
+scalar DateTime
+
+type MyTable {
+  d: Float!
+  b: Float!
+  atan2: Float
+  cbrt: Float
+  copySign: Float
+  expm1: Float
+  hypot: Float
+  log1p: Float
+  nextAfter: Float
+  scalb: Float
+  ulp: Float
+  binomial: Float
+  exponential: Float
+  normal: Float
+  poisson: Float
+}
+
+type Query {
+  MyTable(d: Float, b: Float, limit: Int = 10, offset: Int = 0): [MyTable!]
+}
+
+type Mutation {
+  entry(input: Entry!): EntryResponse!
+}
+
+input Entry {
+  d: Int!
+  b: Int!
+}
+
+type EntryResponse {
+  d: Int!
+  b: Int!
+}
