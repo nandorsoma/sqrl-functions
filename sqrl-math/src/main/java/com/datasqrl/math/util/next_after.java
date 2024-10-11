@@ -6,7 +6,7 @@ import org.apache.flink.table.functions.ScalarFunction;
 
 /** Returns the next floating-point number. */
 @AutoService(ScalarFunction.class)
-public class NextAfter extends ScalarFunction {
+public class next_after extends ScalarFunction {
     public Double eval(Double start, Double direction) {
         if (start == null || direction == null) return null;
         return FastMath.nextAfter(start, direction);

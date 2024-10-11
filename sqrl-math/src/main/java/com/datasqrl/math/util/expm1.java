@@ -4,10 +4,10 @@ import com.google.auto.service.AutoService;
 import org.apache.commons.math3.util.FastMath;
 import org.apache.flink.table.functions.ScalarFunction;
 
-/** Returns the cube root of x. */
+/** Calculates e^x - 1  with better precision for small values. */
 @AutoService(ScalarFunction.class)
-public class Cbrt extends ScalarFunction {
+public class expm1 extends ScalarFunction {
     public Double eval(Double x) {
-        return x == null ? null : FastMath.cbrt(x);
+        return x == null ? null : FastMath.expm1(x);
     }
 }

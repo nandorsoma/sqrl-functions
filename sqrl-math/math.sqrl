@@ -1,25 +1,23 @@
---Uncomment the following line and comment out `IMPORT mock.Data;`
---to test manually with the graphql api.
---IMPORT schema.Entry;
-IMPORT mock.Data;
---Uncomment the following line and comment out `IMPORT target.*;`
---to use the remote package.
---IMPORT datasqrl.functions.math.*;
+--Uncomment the following line and comment out `IMPORT mock.data;` when running with graphql api.
+IMPORT schema.data;
+--IMPORT mock.data;
+--Uncomment the following line and comment out `IMPORT target.*;` to use the remote package.
+--IMPORT datasqrl.math.*;
 IMPORT target.*;
 
+--Uncomment the following line when running with graphql api.
 /*+test */
-MathResults := SELECT d, b,
-            Atan2(d, d) AS atan2,
-            Cbrt(d) AS cbrt,
-            CopySign(d, d) AS copySign,
-            Expm1(d) AS expm1,
-            Hypot(d, d) AS hypot,
-            Log1p(d) AS log1p,
-            NextAfter(d, d) AS nextAfter,
-            Scalb(d, b) AS scalb,
-            Ulp(d) AS ulp,
-            BinomialDistribution(b, 1, b) AS binomial,
-            ExponentialDistribution(d, d) AS exponential,
-            NormalDistribution(d, d, d) AS normal,
-            PoissonDistribution(d, b) AS poisson
-           FROM Data;
+math_results := SELECT d, b,
+            cbrt(d) AS cbrt,
+            copy_sign(d, d) AS copy_sign,
+            expm1(d) AS expm1,
+            hypot(d, d) AS hypot,
+            log1p(d) AS log1p,
+            next_after(d, d) AS next_after,
+            scalb(d, b) AS scalb,
+            ulp(d) AS ulp,
+            binomial_distribution(b, 1, b) AS binomial_distribution,
+            exponential_distribution(d, d) AS exponential_distribution,
+            normal_distribution(d, d, d) AS normal_distribution,
+            poisson_distribution(d, b) AS poisson_distribution
+           FROM data;
