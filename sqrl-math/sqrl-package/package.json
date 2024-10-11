@@ -11,7 +11,6 @@
     "homepage": "https://github.com/DataSQRL/sqrl-functions/blob/main/sqrl-math/sqrl-package/README.md",
     "description": "The com.datasqrl.math package offers a set of advanced mathematical functions designed for the SQRL framework, enabling efficient computations such as cube roots, arc tangents, and more.",
     "documentation": "https://github.com/DataSQRL/sqrl-functions/blob/main/sqrl-math/sqrl-package/README.md",
-    "topics": ["datasqrl", "function", "math"],
-    "sources": ["../target/sqrl-math-0.1.0-SNAPSHOT.jar"]
+    "topics": ["datasqrl", "function", "math"]
   }
 }
