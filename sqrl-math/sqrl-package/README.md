@@ -1,148 +1,45 @@
 # SQRL Mathematical Functions
 
-The `com.datasqrl.math` package provides a collection of advanced mathematical functions for use within the SQRL framework.
+The `datasqrl.math` package provides a collection of advanced mathematical functions for use within the SQRL framework.
 
 ## Functions Overview
 
-To use these functions, simply import the necessary classes and call the desired function in your SQL queries within
-the SQRL framework.
+You can use these UDFs in your SQRL scripts to perform advanced mathematical and statistical computations.
 
-### Cbrt
-**Calculates the cube root of a given value.**
+| **Function Name**                   | **Description**                                                                                                                                                         |
+|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **cbrt(double)**                    | Calculates the cube root of a number. For example, `cbrt(27.0)` returns `3.0`, which is the cube root of 27.0.                                                          |
+| **copy_sign(double, double)**       | Returns the first argument with the sign of the second argument. For example, `copy_sign(2.0, -3.0)` returns `-2.0`.                                                    |
+| **expm1(double)**                   | Calculates e^x - 1 with better precision for small values. For example, `expm1(0.0)` returns `0.0`, as `e^0 - 1 = 0`.                                                   |
+| **hypot(double, double)**           | Computes sqrt(x² + y²) without intermediate overflow or underflow. For example, `hypot(3.0, 4.0)` returns `5.0`, which is the hypotenuse of a 3-4-5 triangle.            |
+| **log1p(double)**                   | Computes the natural logarithm of 1 + x (log(1 + x)) accurately for small x. For example, `log1p(0.0)` returns `0.0` as `log(1 + 0) = 0`.                              |
+| **next_after(double, double)**      | Returns the next floating-point number towards the direction of the second argument. For example, `next_after(1.0, 2.0)` returns the next representable number after 1.0. |
+| **scalb(double, bigint)**           | Multiplies a floating-point number by 2 raised to the power of an integer. For example, `scalb(1.0, 3)` returns `8.0` as `1.0 * 2^3 = 8.0`.                             |
+| **ulp(double)**                     | Returns the size of the unit in the last place (ULP) of the argument. For example, `ulp(1.0)` returns the ULP of 1.0.                                                   |
+| **binomial_distribution(bigint, double, bigint)** | Calculates the probability of obtaining a number of successes in a fixed number of trials for a binomial distribution. For example, `binomial_distribution(10, 0.5, 5)` returns the probability of 5 successes out of 10 trials with a 50% success rate. |
+| **exponential_distribution(double, double)** | Evaluates the probability density or cumulative distribution of an exponential distribution. For example, `exponential_distribution(1.0, 2.0)` returns the exponential distribution's probability for a given rate and time. |
+| **normal_distribution(double, double, double)** | Evaluates the cumulative distribution function for a normal (Gaussian) distribution. For example, `normal_distribution(0.0, 1.0, 1.0)` returns the probability for a standard normal distribution with mean 0 and standard deviation 1. |
+| **poisson_distribution(double, bigint)** | Evaluates the probability mass function of a Poisson-distributed random variable. For example, `poisson_distribution(1.0, 5)` returns the probability of observing 5 events when the average event rate is 1.0. |
 
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Cbrt;
+## Usage
 
-MyTable := SELECT val, Cbrt(val) AS croot FROM Entry;
-```
+The `cbrt` function computes the cube root of a given number. It can be useful in mathematical and scientific calculations where you need to find the value that, when cubed, results in the original number.
 
-### Atan2
-**Computes the arc tangent of the quotient of its arguments.**
+For example, `cbrt(27)` will return `3`, as \(3^3 = 27\).
 
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Atan2;
-
-MyTable := SELECT x, y, Atan2(y, x) AS angle FROM Entry;
-```
-
-### Copysign
-**Returns the first argument with the sign of the second argument.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Copysign;
-
-MyTable := SELECT val1, val2, Copysign(val1, val2) AS cps FROM Entry;
-```
-
-### Hypot
-**Calculates the hypotenuse of a right triangle without overflow.**
+### SQRL Example
 
 ```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Hypot;
+IMPORT schema.entry;
+IMPORT datasqrl.math.*;
 
-MyTable := SELECT x, y, Hypot(x, y) AS hypotenuse FROM Entry;
-```
+-- This query calculates the cube root for a set of values from the entry table
+result_table := 
+    SELECT 
+        cbrt(d) AS cube_root 
+    FROM 
+        entry;
 
-### Max
-**Returns the maximum of two values**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Max;
-
-MyTable := SELECT val1, val2, Max(val1, val2) AS maximum FROM Entry;
-```
-
-### Min
-**Returns the minimum of two values.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Min;
-
-MyTable := SELECT val1, val2, Min(val1, val2) AS minimum FROM Entry;
-```
-
-### ULP
-**Returns the distance between this number and the next representable floating point value.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Ulp;
-
-MyTable := SELECT val, Ulp(val) AS ulpDistance FROM Entry;
-```
-
-### ExpM1
-**Calculates e^x - 1 with better precision for small values.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Expm1;
-
-MyTable := SELECT val, Expm1(val) AS result FROM Entry;
-```
-
-### Log1P
-**Calculates the natural logarithm of 1 + x with better precision for small x.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.Log1p;
-
-MyTable := SELECT val, Log1p(val) AS result FROM Entry;
-```
-
-### NextAfter
-**Returns the next representable floating point value after a given value in the specified direction.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.NextAfter;
-
-MyTable := SELECT val, NextAfter(val, targetVal) AS nextValue FROM Entry;
-```
-
-### BinomialDist
-**Calculates the probability mass function for a binomial distribution.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.BinomialDist;
-
-MyTable := SELECT n, k, BinomialDist(n, k, p) AS probability FROM Entry;
-```
-
-### PoissonDist
-**Calculates the probability mass function for a Poisson distribution.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.PoissonDist;
-
-MyTable := SELECT lambda, x, PoissonDist(lambda, x) AS probability FROM Entry;
-```
-
-### ExponentialDist
-**Calculates the probability density function for an exponential distribution.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.ExponentialDist;
-
-MyTable := SELECT lambda, x, ExponentialDist(lambda, x) AS probability FROM Entry;
-```
-
-### NormalDist
-**Calculates the cumulative distribution function for a normal distribution.**
-
-```sql
-IMPORT myudf.Entry;
-IMPORT datasqrl.functions.math.NormalDist;
-
-MyTable := SELECT mean, stddev, x, NormalDist(mean, stddev, x) AS probability FROM Entry;
+-- Displaying the result
+SELECT * FROM result_table;
 ```
