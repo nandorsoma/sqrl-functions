@@ -1,6 +1,6 @@
 --Uncomment the following line and comment out `IMPORT mock.data;` when running with graphql api.
-IMPORT schema.data;
---IMPORT mock.data;
+--IMPORT schema.data;
+IMPORT mock.data;
 --Uncomment the following line and comment out `IMPORT target.*;` to use the remote package.
 --IMPORT datasqrl.math.*;
 IMPORT target.*;
